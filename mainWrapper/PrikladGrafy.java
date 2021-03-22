@@ -18,14 +18,14 @@ public class PrikladGrafy {
      */
     public static void main(String[] args) throws FileNotFoundException 
     {
-        Graf g = Graf.nacitajSubor("C:\\Users\\patri.DESKTOP-FFNU79O\\dev\\GRAFY\\pr5.hrn");
+        Graf g = Graf.nacitajSubor("C:\\Users\\patri.DESKTOP-FFNU79O\\dev\\GRAFY\\pr4.hrn");
         g.printInfo();
         //g.maticaSusednosti();
         //g.shortestPath(5);
         System.out.println();
        // g.maticaOhodnoteniHran();
-       //g.floyd();   
-       g.labelSet(3);
+       g.floyd(1, 5);   
+       //g.labelSet(3);
     }
  
 }

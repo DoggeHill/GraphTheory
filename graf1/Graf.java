@@ -205,7 +205,7 @@ public class Graf {
         }
     }
 
-    public void floyd() {
+    public void floyd(int zaciatok, int koniec) {
         // zostrojíme dve matice
         int[][] C = new int[n + 1][n + 1];
         int[][] X = new int[n + 1][n + 1];
@@ -235,9 +235,9 @@ public class Graf {
             X[ii][jj] = ii;
         }
 
-        for (int a = 1; a <= n; a++) { // krakt
-            for (int b = 1; b <= n; b++) { // matica
-                for (int c = 1; c <= n; c++) { // matica
+        for (int a = 1; a <= n; a++) { // krakt           k
+            for (int b = 1; b <= n; b++) { // matica      i
+                for (int c = 1; c <= n; c++) { // matica  j
                     if (C[b][c] > C[b][a] + C[a][c]) {
                         C[b][c] = C[b][a] + C[a][c];
                         X[b][c] = X[a][c];
@@ -261,6 +261,15 @@ public class Graf {
 
             }
         }
+
+        System.out.println("Finálna cesta");
+        int j = koniec;
+        System.out.print(koniec + " ");
+        while(j != zaciatok){
+            j = X[zaciatok][j];
+           System.out.print( j + " " );
+        }
+
 
     }
 
@@ -288,27 +297,31 @@ public class Graf {
         epsilon.add(u);
 
         int r = 0;
-       
+
         while (!epsilon.isEmpty()) {
 
             r = epsilon.get(0);
             epsilon.remove(0);
 
             for (int i = 1; i <= m; i++) {
-                if(H[i][0] == r){
+                if (H[i][0] == r) {
                     int cij = H[i][2];
                     int j = H[i][1];
-                    if(t[j] > t[r] + cij){
+
+                    System.out.print(j + " ");
+                    if (t[j] > t[r] + cij) {
                         t[j] = t[r] + cij;
-                        x[j]  = r;
+                        x[j] = r;
                         epsilon.add(j);
                     }
                 }
             }
+            System.out.println();
         }
-        int cnt = 0; 
+        int cnt = 0;
         for (int i : t) {
-            if(cnt++ == 0 ) continue;
+            if (cnt++ == 0)
+                continue;
             System.out.print(i + "  ");
         }
         System.out.println();
