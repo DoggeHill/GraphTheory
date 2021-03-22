@@ -24,7 +24,7 @@ public class PrikladGrafy {
         //g.shortestPath(5);
         System.out.println();
        // g.maticaOhodnoteniHran();
-       g.floyd(1, 5);   
+       g.floyd(3, 2);   
        //g.labelSet(3);
     }
  

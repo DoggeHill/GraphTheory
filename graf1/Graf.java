@@ -226,6 +226,7 @@ public class Graf {
             }
         }
 
+        //?tam kde je hrana prepíšeme  nekonečno na cenu
         for (int i = 1; i <= m; i++) {
             int ii = this.H[i][0];
             int jj = this.H[i][1];
@@ -235,25 +236,26 @@ public class Graf {
             X[ii][jj] = ii;
         }
 
-        for (int a = 1; a <= n; a++) { // krakt           k
-            for (int b = 1; b <= n; b++) { // matica      i
-                for (int c = 1; c <= n; c++) { // matica  j
-                    if (C[b][c] > C[b][a] + C[a][c]) {
-                        C[b][c] = C[b][a] + C[a][c];
-                        X[b][c] = X[a][c];
+        for (int k = 1; k <= n; k++) { // krakt           k
+            for (int i = 1; i <= n; i++) { // matica      i
+                for (int j = 1; j <= n; j++) { // matica  j
+                    if (C[i][j] > C[i][k] + C[k][j]) {
+                        C[i][j] = C[i][k] + C[k][j];
+                        X[i][j] = X[k][j];
                     }
 
                 }
-                for (int i = 1; i <= n; i++) {
+                System.out.println("X");
+                for (int i2 = 1; i2 <= n; i2++) {
                     for (int e = 1; e <= n; e++) {
-                        System.out.print(X[i][e] + " ");
+                        System.out.print(X[i2][e] + " ");
                     }
                     System.out.println();
                 }
-                System.out.println();
-                for (int i = 1; i <= n; i++) {
+                System.out.println("C");
+                for (int i3 = 1; i3 <= n; i3++) {
                     for (int e = 1; e <= n; e++) {
-                        System.out.print(C[i][e] + " ");
+                        System.out.print(C[i3][e] + " ");
                     }
                     System.out.println();
                 }
