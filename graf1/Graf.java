@@ -19,11 +19,13 @@ public class Graf {
     int n; // pocet vrcholov grafu
     int m; // pocet hran grafu
     int H[][]; // pole udajov o hranach
+    int S[];
 
     public Graf(int paPocetVrcholov, int paPocetHran) {
         n = paPocetVrcholov;
         m = paPocetHran;
         H = new int[1 + m][3];
+        S = new int[n+2];
     }
 
     /*
@@ -328,5 +330,33 @@ public class Graf {
         }
         System.out.println();
     }
+
+
+    public void poleSmerovnikov(){
+        for (int i = 0; i < this.S.length; i++) {
+            this.S[i] = 0;
+        }
+        for (int k = 0; k < this.m; k++) {
+            int i = this.H[k][0];
+            if (this.S[i] == 0){
+                this.S[i] = k;
+            }
+        }
+        this.S[this.n + 1] = this.m + 1;
+        
+        for (int i = this.n; i >=1; i--) {
+            if (this.S[i] == 0){
+                this.S[i] = this.S[i + 1];
+            }
+        }
+        for (int i = 0; i < this.S.length; i++) {
+            System.out.println(i + " " + this.S[i]);
+            
+        }
+    
+    }
+
+    
+
 
 }
