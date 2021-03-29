@@ -31,7 +31,8 @@ public class PrikladGrafy {
        //g.labelSet(3);
        g.poleSmerovnikov();
        //g.vypisPoleH();
-       g.vystupneHrany(2021);
+       int x = 2021;
+       g.vystupneHrany(x);
     }
  
 }

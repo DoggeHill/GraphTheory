@@ -349,18 +349,20 @@ public class Graf {
                 this.S[i] = this.S[i + 1];
             }
         }
-        for (int i = 0; i < this.S.length; i++) {
+        /*for (int i = 0; i < this.S.length; i++) {
             System.out.println(i + " " + this.S[i]);
 
-        }
+        }*/
     }
 
     public void vystupneHrany(int vrchol) {
+        int zaciatok = 0;
+
         for (int i = this.S[vrchol]; i < this.S[vrchol + 1]; i++) {
-            System.out.println("(" + this.H[i][0] + ", " + this.H[i][1] + ")");
+            System.out.print("(" + this.H[i][0] + "," + this.H[i][1] + ")");
         }
-        if (this.S[vrchol] - this.S[vrchol + 1] == 0) {
-            System.out.println("Z tohto vrchola nevychádza ziadna hrana.");
+        if (this.S[vrchol] - S[vrchol - 1] == 0) {
+            System.out.println("Z tohto vrchola nevychádza žiadna hrana");
         }
     }
 
