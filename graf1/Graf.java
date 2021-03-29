@@ -25,7 +25,7 @@ public class Graf {
         n = paPocetVrcholov;
         m = paPocetHran;
         H = new int[1 + m][3];
-        S = new int[n+2];
+        S = new int[n + 2];
     }
 
     /*
@@ -228,7 +228,7 @@ public class Graf {
             }
         }
 
-        //?tam kde je hrana prepíšeme  nekonečno na cenu
+        // ?tam kde je hrana prepíšeme nekonečno na cenu
         for (int i = 1; i <= m; i++) {
             int ii = this.H[i][0];
             int jj = this.H[i][1];
@@ -238,9 +238,9 @@ public class Graf {
             X[ii][jj] = ii;
         }
 
-        for (int k = 1; k <= n; k++) { // krakt           k
-            for (int i = 1; i <= n; i++) { // matica      i
-                for (int j = 1; j <= n; j++) { // matica  j
+        for (int k = 1; k <= n; k++) { // krakt k
+            for (int i = 1; i <= n; i++) { // matica i
+                for (int j = 1; j <= n; j++) { // matica j
                     if (C[i][j] > C[i][k] + C[k][j]) {
                         C[i][j] = C[i][k] + C[k][j];
                         X[i][j] = X[k][j];
@@ -269,11 +269,10 @@ public class Graf {
         System.out.println("Finálna cesta");
         int j = koniec;
         System.out.print(koniec + " ");
-        while(j != zaciatok){
+        while (j != zaciatok) {
             j = X[zaciatok][j];
-           System.out.print( j + " " );
+            System.out.print(j + " ");
         }
-
 
     }
 
@@ -331,32 +330,40 @@ public class Graf {
         System.out.println();
     }
 
-
-    public void poleSmerovnikov(){
+    public void poleSmerovnikov() {
         for (int i = 0; i < this.S.length; i++) {
             this.S[i] = 0;
         }
         for (int k = 0; k < this.m; k++) {
             int i = this.H[k][0];
-            if (this.S[i] == 0){
+            if (this.S[i] == 0) {
                 this.S[i] = k;
             }
         }
         this.S[this.n + 1] = this.m + 1;
-        
-        for (int i = this.n; i >=1; i--) {
-            if (this.S[i] == 0){
+
+        for (int i = this.n; i >= 1; i--) {
+            if (this.S[i] == 0) {
                 this.S[i] = this.S[i + 1];
             }
         }
         for (int i = 0; i < this.S.length; i++) {
             System.out.println(i + " " + this.S[i]);
-            
+
         }
-    
+
     }
 
-    
+    public void vystupneHrany(int vrchol) {
 
+        for (int i = this.S[vrchol]; i < this.S[vrchol + 1]; i++) {
+            System.out.println("(" + this.H[i][0] + ", " + this.H[i][1] + ")");
+        }
+
+        if (this.S[vrchol] - this.S[vrchol + 1] == 0) {
+            System.out.println("Z tohto vrchola nevychádza ziadna hrana.");
+        }
+
+    }
 
 }
