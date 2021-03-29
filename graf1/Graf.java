@@ -331,6 +331,8 @@ public class Graf {
     }
 
     public void poleSmerovnikov() {
+        // !sort
+        this.bubbleSort();
         for (int i = 0; i < this.S.length; i++) {
             this.S[i] = 0;
         }
@@ -351,19 +353,46 @@ public class Graf {
             System.out.println(i + " " + this.S[i]);
 
         }
-
     }
 
     public void vystupneHrany(int vrchol) {
-
         for (int i = this.S[vrchol]; i < this.S[vrchol + 1]; i++) {
             System.out.println("(" + this.H[i][0] + ", " + this.H[i][1] + ")");
         }
-
         if (this.S[vrchol] - this.S[vrchol + 1] == 0) {
             System.out.println("Z tohto vrchola nevychádza ziadna hrana.");
         }
+    }
 
+    public void bubbleSort() {
+        boolean b = false;
+        for (int i = 1; i < H.length; i++) {
+            for (int j = i + 1; j < H.length - 1; j++) {
+
+                if (H[j][0] > H[j + 1][0]) {
+                    b = true;
+                    for (int k = 0; k <= 2; k++) {
+
+                        int x = H[j][k];
+                        H[j][k] = H[j + 1][k];
+                        H[j + 1][k] = x;
+                    }
+
+                }
+            }
+
+            if (!b) {
+                break;
+            }
+            b = false;
+        }
+    }
+
+    public void vypisPoleH() {
+        for (int[] is : H) {
+            System.out.println(is[0] + " " + is[1] + " " + is[2]);
+        }
+        System.out.println();
     }
 
 }
